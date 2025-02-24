@@ -9,6 +9,7 @@ title: MySQLCDC 整库到 Hudi
 
 - 请确保已经在 Flink/lib 和 dinky/extends 目录下放置了 Hudi 的 Flink connector jar。如果提交模式为 Application/Per-Job，请确保 Hudi connector jar 已经放置在 HDFS 中
 - 请确保已经在 Flink/lib 和 dinky/extends 目录下放置了 MySQL CDC 的 Flink connector jar。 如果提交模式为 Application/Per-Job，请确保 MySQL CDC connector jar 已经放置在 HDFS 中
+- 请确保已经在 Flink/lib 和 dinky/extends 目录下放置了 DORIS CDC 的 Flink connector jar。如果提交模式为 Application/Per-Job，请确保 MySQL CDC connector jar 已经放置在 HDFS 中
 - 如在两方启动后才进行放置上述 jar 包，请重启 Flink 和 Dinky 服务,或者使用 Dinky 中提供的 [ADD CUSTOMJAR](../../extend/expand_statements/add_jar_statement) 功能进行加载。
 
 
@@ -30,6 +31,7 @@ title: MySQLCDC 整库到 Hudi
 EXECUTE CDCSOURCE demo_hudi WITH (
  'connector' = 'mysql-cdc',
  'hostname' = '127.0.0.1',
+ 'source.server-time-zone' = 'Asia/Shanghai', //默认是UTC时区，如果遇到时区问题需要指定source.server-time-zone
  'port' = '3306',
  'username' = 'root',
  'password' = '123456',
